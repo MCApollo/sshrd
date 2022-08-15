@@ -67,7 +67,7 @@ init_usb(void)
     if (!desc) {
         return -1;
     }
-    IOUSBDeviceDescriptionSetSerialString(desc, CFSTR("ramdisk tool " __DATE__ " " __TIME__ ));
+    IOUSBDeviceDescriptionSetSerialString(desc, CFSTR("restored_external - ramdisk tool " __DATE__ " " __TIME__ ));
 
     controller = 0;
     while (IOUSBDeviceControllerCreate(kCFAllocatorDefault, &controller)) {
@@ -99,7 +99,7 @@ init_usb(void)
 }
 
 #include "micro_inetd.c" /* I know, I am a bad person for doing this */
-char *execve_params[] = { "micro_inetd", "22", "/usr/local/sbin/dropbear", "-i", NULL };
+char *execve_params[] = { "micro_inetd", "22", "/usr/sbin/dropbear", "-i", NULL };
 
 /* chopped from https://code.google.com/p/iphone-dataprotection/ */
 int
